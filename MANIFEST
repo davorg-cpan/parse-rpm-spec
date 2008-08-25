@@ -1,0 +1,6 @@
+Changes
+Build.PL
+MANIFEST
+README
+t/Parse-RPM-Spec.t
+lib/Parse/RPM/Spec.pm
