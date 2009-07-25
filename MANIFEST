@@ -2,7 +2,7 @@ Changes
 Build.PL
 MANIFEST
 README
-t/Parse-RPM-Spec.t
+t/parse-rpm-spec.t
 t/pod.t
 t/pod_coverage.t
 t/file.spec
