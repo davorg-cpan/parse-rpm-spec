@@ -5,33 +5,26 @@ use strict;
 use warnings;
 
 use Carp;
+use Moose;
 
-our @ISA = qw(Exporter);
+our $VERSION = '0.02';
 
-our $VERSION = '0.01';
+has file          => ( is => 'rw', isa => 'Str' );
+has name          => ( is => 'rw', isa => 'Str' );
+has version       => ( is => 'rw', isa => 'Str' );
+has release       => ( is => 'rw', isa => 'Str' );
+has summary       => ( is => 'rw', isa => 'Str' );
+has license       => ( is => 'rw', isa => 'Str' );
+has group         => ( is => 'rw', isa => 'Str' );
+has url           => ( is => 'rw', isa => 'Str' );
+has source        => ( is => 'rw', isa => 'Str' );
+has buildroot     => ( is => 'rw', isa => 'Str' );
+has buildarch     => ( is => 'rw', isa => 'Str' );
+has buildrequires => ( is => 'rw', isa => 'ArrayRef' );
+has requires      => ( is => 'rw', isa => 'ArrayRef' );
 
-my @attr = qw(name version release summary license gropu url source
-              buildroot buildarch buildrequires requires);
-
-my %attr = map { $_ => 1 } @attr;
-
-sub new {
-  my $class = shift;
-
-  my $args = shift;
-  my $self = {};
-
-  if (my $type = ref $args) {
-    if ($type eq 'HASH') {
-      $self = $args;
-    } else {
-      croak "Unknown reference of type $type passed to ${class}::new\n";
-    }
-  } else {
-    $self->{file} = $args;
-  }
-
-  $self = bless $self, $class;
+sub BUILD {
+  my $self = shift;
 
   $self->parse_file;
 
@@ -41,7 +34,9 @@ sub new {
 sub parse_file {
   my $self = shift;
 
-  my $file = shift || $self->{file};
+  $self->file(shift) if @_;
+
+  my $file = $self->file;
 
   unless (defined $file) {
     croak "No spec file to parse\n";
@@ -69,7 +64,7 @@ sub parse_file {
     /^License:\s*(.+)/       and $self->{license}   = $1;
     /^Group:\s*(\S+)/        and $self->{group}     = $1;
     /^URL:\s*(\S+)/          and $self->{url}       = $1;
-    /^Source0:\s*(\S+)/      and $self->{source}    = $1;
+    /^Source0?:\s*(\S+)/     and $self->{source}    = $1;
     /^BuildRoot:\s*(\S+)/    and $self->{buildroot} = $1;
 
     /^BuildRequires:\s*(.+)/ and push @{$self->{buildrequires}}, $1;
@@ -79,29 +74,11 @@ sub parse_file {
   return $self;
 }
 
-sub AUTOLOAD {
-  our $AUTOLOAD;
-
-  my $self = shift;
-
-  my ($attr) = $AUTOLOAD =~ /.*::(.*)/;
-
-  unless ($attr{$attr}) {
-    croak "Invalid attribute: $attr\n";
-  }
-
-  my $val = $self->{$attr};
-
-  if (@_) {
-    $self->{$attr} = shift;
-  }
-
-  return $val;
-}
+no Moose;
+__PACKAGE__->meta->make_immutable;
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
@@ -111,7 +88,7 @@ Parse::RPM::Spec - Perl extension to parse RPM spec files.
 
   use Parse::RPM::Spec;
 
-  my $spec = Parse::RPM::Spec->new('some_pacakge.spec');
+  my $spec = Parse::RPM::Spec->new( { file => 'some_package.spec' } );
 
   print $spec->name;    # some_package
   print $spec->version; # 0.01 (for example)
