@@ -9,7 +9,7 @@ use Moose;
 
 our $VERSION = '0.02';
 
-has file          => ( is => 'rw', isa => 'Str' );
+has file          => ( is => 'rw', isa => 'Str', required => 1 );
 has name          => ( is => 'rw', isa => 'Str' );
 has version       => ( is => 'rw', isa => 'Str' );
 has release       => ( is => 'rw', isa => 'Str' );
@@ -20,8 +20,8 @@ has url           => ( is => 'rw', isa => 'Str' );
 has source        => ( is => 'rw', isa => 'Str' );
 has buildroot     => ( is => 'rw', isa => 'Str' );
 has buildarch     => ( is => 'rw', isa => 'Str' );
-has buildrequires => ( is => 'rw', isa => 'ArrayRef' );
-has requires      => ( is => 'rw', isa => 'ArrayRef' );
+has buildrequires => ( is => 'rw', isa => 'ArrayRef[Str]' );
+has requires      => ( is => 'rw', isa => 'ArrayRef[Str]' );
 
 sub BUILD {
   my $self = shift;
