@@ -1,6 +1,0 @@
-Revision history for Perl extension Parse::RPM::Spec.
-
-0.01  Mon Aug 25 11:41:00 2008
-	- original version; created by h2xs 1.23 with options
-		-X -n Parse::RPM::Spec
-
