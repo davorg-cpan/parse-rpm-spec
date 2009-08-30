@@ -3,11 +3,12 @@ use 5.006000;
 
 my $build = Module::Build->new(
         license            => 'perl',
-        dist_version       => '0.02',
+        dist_version       => '0.03',
         dist_author        => 'Dave Cross <dave@mag-sol.com>',
         module_name        => 'Parse::RPM::Spec',
         requires           => {
-                perl                  => '5.6.0',
+                perl       => '5.6.0',
+		Moose      => 0,
         },
         build_requires     => {
                 'Test::More'          => 0,
