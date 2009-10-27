@@ -7,7 +7,7 @@ use warnings;
 use Carp;
 use Moose;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 has file          => ( is => 'rw', isa => 'Str', required => 1 );
 has name          => ( is => 'rw', isa => 'Str' );
@@ -66,6 +66,7 @@ sub parse_file {
     /^URL:\s*(\S+)/          and $self->{url}       = $1;
     /^Source0?:\s*(\S+)/     and $self->{source}    = $1;
     /^BuildRoot:\s*(\S+)/    and $self->{buildroot} = $1;
+    /^BuildArch:\s*(\S+)/    and $self->{buildarch} = $1;
 
     /^BuildRequires:\s*(.+)/ and push @{$self->{buildrequires}}, $1;
     /^Requires:\s*(.+)/      and push @{$self->{requires}},      $1;

@@ -1,4 +1,4 @@
-use Test::More tests => 10;
+use Test::More tests => 11;
 BEGIN { use_ok('Parse::RPM::Spec') };
 
 ok($spec = Parse::RPM::Spec->new( { file => 't/file.spec' } ));
@@ -11,5 +11,6 @@ is($spec->name, 'perl-Array-Compare');
 is($spec->version, '1.16');
 $spec->version('1.17');
 is($spec->version, '1.17');
+is($spec->buildarch, 'noarch');
 is(@{$spec->buildrequires}, 2);
 is($spec->buildrequires->[0], 'perl >= 1:5.6.0');
