@@ -12,6 +12,7 @@ our $VERSION = '0.05';
 has file          => ( is => 'rw', isa => 'Str', required => 1 );
 has name          => ( is => 'rw', isa => 'Str' );
 has version       => ( is => 'rw', isa => 'Str' );
+has epoch	  => ( is => 'rw', isa => 'Str' );
 has release       => ( is => 'rw', isa => 'Str' );
 has summary       => ( is => 'rw', isa => 'Str' );
 has license       => ( is => 'rw', isa => 'Str' );
@@ -59,6 +60,7 @@ sub parse_file {
   while (<$fh>) {
     /^Name:\s*(\S+)/         and $self->{name}      = $1;
     /^Version:\s*(\S+)/      and $self->{version}   = $1;
+    /^Epoch:\s*(\S+)/        and $self->{epoch}     = $1;
     /^Release:\s*(\S+)/      and $self->{release}   = $1;
     /^Summary:\s*(.+)/       and $self->{summary}   = $1;
     /^License:\s*(.+)/       and $self->{license}   = $1;

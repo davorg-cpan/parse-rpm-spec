@@ -1,5 +1,6 @@
 Name:           perl-Array-Compare
 Version:        1.16
+Epoch:		1
 Release:        1%{?dist}
 Summary:        Perl extension for comparing arrays
 License:        GPL+ or Artistic
