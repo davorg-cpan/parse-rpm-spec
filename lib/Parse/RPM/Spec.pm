@@ -128,12 +128,17 @@ Parses the given spec file. This is called as part of the initialisation
 carried out by the C<new> method, so there is generally no need to call it
 yourself.
 
-=head2 $spec->name, $spec->version, $spec->release, $spec->summary, $spec->license, $spec->group, $spec->url, $spec->source, $spec->buildroot, $spec->buildarch, $spec->buildrequires, $spec->requires
+=head2 $spec->file, $spec->name, $spec->version, $spec->epoch, $spec->release, $spec->summary, $spec->license, $spec->group, $spec->url, $spec->source, $spec->buildroot, $spec->buildarch, $spec->buildrequires, $spec->requires
 
 Attribute accessors for the spec file object. Each one returns a piece of
 information from the spec file header. The C<buildrequires> and C<requires>
 methods are slightly different. Because these keys can have multiple values,
 they return a reference to an array of values.
+
+=head2 Parse::RPM::Spec->meta
+
+Moose-provided class method for introspection. Generally not needed
+by users.
 
 =head2 EXPORT
 
