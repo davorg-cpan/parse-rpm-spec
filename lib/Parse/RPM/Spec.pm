@@ -131,9 +131,9 @@ yourself.
 =head2 $spec->file, $spec->name, $spec->version, $spec->epoch, $spec->release, $spec->summary, $spec->license, $spec->group, $spec->url, $spec->source, $spec->buildroot, $spec->buildarch, $spec->buildrequires, $spec->requires
 
 Attribute accessors for the spec file object. Each one returns a piece of
-information from the spec file header. The C<buildrequires> and C<requires>
-methods are slightly different. Because these keys can have multiple values,
-they return a reference to an array of values.
+information from the spec file header. The C<source>, C<buildrequires>
+and C<requires> methods are slightly different. Because these keys can have
+multiple values, they return a reference to an array of values.
 
 =head2 Parse::RPM::Spec->meta
 
