@@ -105,7 +105,7 @@ Centos, SUSE, Mandriva and many more.
 RPMs are build from the source of a packages along with a spec file. The
 spec file controls how the RPM is built.
 
-This module creates Perl objects which module spec files. Currently it gives
+This module creates Perl objects which model spec files. Currently it gives
 you simple access to various pieces of information from the spec file.
 
 =head1 CAVEAT
