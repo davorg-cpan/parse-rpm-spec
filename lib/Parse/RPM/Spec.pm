@@ -57,21 +57,39 @@ sub parse_file {
 
   open my $fh, $file or croak "Cannot open $file: $!\n";
 
-  while (<$fh>) {
-    /^Name:\s*(\S+)/         and $self->{name}      = $1;
-    /^Version:\s*(\S+)/      and $self->{version}   = $1;
-    /^Epoch:\s*(\S+)/        and $self->{epoch}     = $1;
-    /^Release:\s*(\S+)/      and $self->{release}   = $1;
-    /^Summary:\s*(.+)/       and $self->{summary}   = $1;
-    /^License:\s*(.+)/       and $self->{license}   = $1;
-    /^Group:\s*(\S+)/        and $self->{group}     = $1;
-    /^URL:\s*(\S+)/          and $self->{url}       = $1;
-    /^Source\d*:\s*(\S+)/    and push @{$self->{source}}, $1;
-    /^BuildRoot:\s*(\S+)/    and $self->{buildroot} = $1;
-    /^BuildArch:\s*(\S+)/    and $self->{buildarch} = $1;
+  my %strings = (
+    name      => qr[^Name:\s*(\S+)],
+    version   => qr[^Version:\s*(\S+)],
+    epoch     => qr[^Epoch:\s*(\S+)],
+    release   => qr[^Release:\s*(\S+)],
+    summary   => qr[^Summary:\s*(.+)],
+    license   => qr[^License:\s*(.+)],
+    group     => qr[^Group:\s*(\S+)],
+    url       => qr[^URL:\s*(\S+)],
+    buildroot => qr[^BuildRoot:\s*(\S+)],
+    buildarch => qr[^BuildArch:\s*(\S+)],
+  );
 
-    /^BuildRequires:\s*(.+)/ and push @{$self->{buildrequires}}, $1;
-    /^Requires:\s*(.+)/      and push @{$self->{requires}},      $1;
+  my %arrays = (
+    source        => qr[^Source\d*:\s*(\S+)],
+    buildrequires => qr[^BuildRequires:\s*(.+)],
+    requires      => qr[^Requires:\s*(.+)],
+  );
+  
+  LINE: while (<$fh>) {
+    foreach my $attr (keys %strings) {
+      if (/$strings{$attr}/) {
+        $self->{$attr} = $1;
+        next LINE;
+      }
+    }
+
+    foreach my $attr (keys %arrays) {
+      if (/$arrays{$attr}/) {
+        push @{$self->{$attr}}, $1;
+        next LINE;
+      }
+    }
   }
 
   return $self;
