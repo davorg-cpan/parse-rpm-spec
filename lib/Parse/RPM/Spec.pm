@@ -136,7 +136,7 @@ support for the rest of the file very soon.
 
 =head2 $spec = Parse::RPM::Spec->new('some_package.spec')
 
-Creates a new Parse::EPM::Spec object. Takes one mandatory parameter which
+Creates a new Parse::RPM::Spec object. Takes one mandatory parameter which
 is the path to the spec file that you are interested in. Throws an exception
 if it doesn't find a valid spec.
 
