@@ -1,0 +1,12 @@
+Parse-RPM-Spec-*.tar.gz
+Parse-RPM-Spec/
+Build
+Changes
+META.json
+META.yml
+MYMETA.json
+MYMETA.yml
+Makefile.PL
+_build/
+blib/
+cover_db/
