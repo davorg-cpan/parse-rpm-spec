@@ -75,7 +75,7 @@ sub parse_file {
     buildrequires => qr[^BuildRequires:\s*(.+)],
     requires      => qr[^Requires:\s*(.+)],
   );
-  
+
   LINE: while (<$fh>) {
     foreach my $attr (keys %strings) {
       if (/$strings{$attr}/) {
