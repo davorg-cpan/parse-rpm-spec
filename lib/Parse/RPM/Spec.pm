@@ -7,7 +7,7 @@ use warnings;
 use Carp;
 use Moose;
 
-our $VERSION = '0.08';
+our $VERSION = 'v1.0.0';
 
 has file          => ( is => 'rw', isa => 'Str', required => 1 );
 has name          => ( is => 'rw', isa => 'Str' );
