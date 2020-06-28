@@ -1,3 +1,5 @@
+use compat::perl7;
+
 package Parse::RPM::Spec;
 
 use 5.006000;
