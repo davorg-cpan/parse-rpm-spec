@@ -1,4 +1,9 @@
-2020-11-3   Dave Cross <dave@perlhaskc.com>
+2020-11-04  Dave Cross <dave@perlhacks.com>
+
+        * Version 1.0.2
+        * Add Test::Exception to prereqs
+
+2020-11-03  Dave Cross <dave@perlhacks.com>
 
         * Version 1.0.1
         * Improved tests

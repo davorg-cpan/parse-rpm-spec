@@ -11,6 +11,7 @@ my $build = Module::Build->new(
         },
         build_requires     => {
                 'Test::More'          => 0,
+                'Test::Exception'     => 0,
         },
         build_recommends   => {
                 'Test::Pod'           => 0,
