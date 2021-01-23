@@ -1,9 +1,12 @@
+use strict;
+use warnings;
+
 use Test::More;
 use Test::Exception;
 
 BEGIN { use_ok('Parse::RPM::Spec') };
 
-ok($spec = Parse::RPM::Spec->new( { file => 't/file.spec' } ),
+ok(my $spec = Parse::RPM::Spec->new( { file => 't/file.spec' } ),
   'Got an object');
 isa_ok($spec, 'Parse::RPM::Spec');
 

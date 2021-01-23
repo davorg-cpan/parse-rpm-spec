@@ -83,7 +83,7 @@ sub parse_file {
     croak "Spec file $file is empty\n";
   }
 
-  open my $fh, $file or croak "Cannot open $file: $!\n";
+  open my $fh, '<', $file or croak "Cannot open $file: $!\n";
 
   my $scalars = $self->parse_spec->{scalars};
   my $arrays  = $self->parse_spec->{arrays};
