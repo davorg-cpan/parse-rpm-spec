@@ -4,7 +4,7 @@ use warnings;
 use Test::More;
 use Test::Exception;
 
-BEGIN { use_ok('Parse::RPM::Spec') };
+use Parse::RPM::Spec;
 
 my $spec = Parse::RPM::Spec->new( { file => 't/perl-License-Syntax.spec' } );
 
