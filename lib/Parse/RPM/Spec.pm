@@ -7,7 +7,7 @@ use warnings;
 use Carp;
 use Moose;
 
-our $VERSION = 'v1.0.3';
+our $VERSION = 'v1.1.0';
 
 has file          => ( is => 'ro', isa => 'Str', required => 1 );
 has name          => ( is => 'rw', isa => 'Str' );
@@ -23,6 +23,8 @@ has buildroot     => ( is => 'rw', isa => 'Str' );
 has buildarch     => ( is => 'rw', isa => 'Str' );
 has buildrequires => ( is => 'rw', isa => 'ArrayRef[Str]', default => sub { [] } );
 has requires      => ( is => 'rw', isa => 'ArrayRef[Str]', default => sub { [] } );
+has [ qw( excluderach exclusivearch excludeos exclusiveos ) ]
+  => ( is => 'rw', isa => 'Str' );
 
 has parse_spec => (
   is => 'ro',
@@ -43,6 +45,10 @@ sub _build_parse_spec {
       url       => qr[^URL:\s*(\S+)],
       buildroot => qr[^BuildRoot:\s*(\S+)],
       buildarch => qr[^BuildArch:\s*(\S+)],
+      excludearch   => qr[^ExcludeArch:\s*(\S+)],
+      exclusivearch => qr[^ExclusiveArch:\s*(\S+)],
+      excludeos     => qr[^ExcludeOS:\s*(\S+)],
+      exclusiveos   => qr[^ExclusiveOS:\s*(\S+)],
     },
     arrays => {
       source        => qr[^Source\d*:\s*(\S+)],
