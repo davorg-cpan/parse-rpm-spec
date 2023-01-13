@@ -23,7 +23,7 @@ has buildroot     => ( is => 'rw', isa => 'Str' );
 has buildarch     => ( is => 'rw', isa => 'Str' );
 has buildrequires => ( is => 'rw', isa => 'ArrayRef[Str]', default => sub { [] } );
 has requires      => ( is => 'rw', isa => 'ArrayRef[Str]', default => sub { [] } );
-has [ qw( excluderach exclusivearch excludeos exclusiveos ) ]
+has [ qw( excludearch exclusivearch excludeos exclusiveos ) ]
   => ( is => 'rw', isa => 'Str' );
 
 has parse_spec => (
