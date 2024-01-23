@@ -23,11 +23,11 @@ my $build = Module::Build->new(
                 resources => {
                         repository => {
                                type => 'git',
-                               url  => 'git://github.com/davorg/parse-rpm-spec.git',
-                               web  => 'https://github.com/davorg/parse-rpm-spec',
+                               url  => 'git://github.com/davorg-cpan/parse-rpm-spec.git',
+                               web  => 'https://github.com/davorg-cpan/parse-rpm-spec',
                         },
                         bugtracker => {
-                               web  => 'https://github.com/davorg/parse-rpm-spec/issues',
+                               web  => 'https://github.com/davorg-cpan/parse-rpm-spec/issues',
                         },
                 },
         },
